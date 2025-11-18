@@ -1,8 +1,9 @@
-
 import React from 'react'
-import Forgot from '@/components/Auth/Forgot'
 
-export default function Page() {
-  return <Forgot />
+function page() {
+  return (
+    <div>page</div>
+  )
 }
-  
+
+export default page
