@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:5500/api/v1", // ✅ Base URL from .env
+  baseURL: process.env.NEXT_PUBLIC_API_URL, // ✅ Base URL from .env
   withCredentials: true, // ✅ Always send cookies (for HttpOnly auth)
 });
 
