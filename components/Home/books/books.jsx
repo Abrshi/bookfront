@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import api from "@/axios/axios";
-import { FileDown, BookOpen } from "lucide-react";
+import { Eye , BookOpen } from "lucide-react";
 
 function Books() {
   const [books, setBooks] = useState([]);
@@ -74,8 +74,8 @@ function Books() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 transition-colors"
                   >
-                    <FileDown className="w-5 h-5" />
-                    View / Download
+                    <Eye  className="w-5 h-5" />
+                    View
                   </a>
                 )}
               </div>
