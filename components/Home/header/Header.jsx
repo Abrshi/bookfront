@@ -4,21 +4,20 @@ import { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
+import BookSuggestion from "../books/ai/BookSearch";
+import { useAI } from "@/context/AIContext";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { user, loading } = useAuth();
-
+const { title, setTitle } = useAI()
   const navigation = [
     { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Services", href: "/services" },
-    { name: "Contact", href: "/contact" },
-    { name: "Blog", href: "/blog" },
+   
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-black shadow-md">
+    <header className="sticky top-0 z-500 bg-black shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
 
@@ -28,7 +27,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-6">
+          <nav className="hidden md:flex space-x-6 w-[60%] items-center">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -38,7 +37,16 @@ export default function Header() {
                 {item.name}
               </Link>
             ))}
+            <div className="w-full">
+           {user?.user?(<BookSuggestion
+              onSuggested={(bookTitle) => {
+                setTitle(bookTitle); // updates global state
+              }}
+            />):null}
+         </div>
           </nav>
+
+         
 
           {/* Right Section */}
           <div className="flex items-center space-x-4">
@@ -89,7 +97,15 @@ export default function Header() {
               >
                 {item.name}
               </Link>
+              
             ))}
+            <div className="w-full">
+              {user?.user?(<BookSuggestion
+                  onSuggested={(bookTitle) => {
+                    setTitle(bookTitle); // updates global state
+                  }}
+                />):null}
+            </div>
 
             {/* Mobile Auth Section */}
             {loading ? (

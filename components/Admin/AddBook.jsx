@@ -118,15 +118,16 @@ export default function AddBook() {
           name="categoryId"
           value={form.categoryId}
           onChange={handleChange}
-          className="border p-2 rounded text-white bg-black"
         >
-          <option value="">Select Category *</option>
+          <option className="bg-black" value="">Select Category *</option>
           {categories.map((cat) => (
-            <option key={cat.id} value={cat.id}>
-              {cat.catagory || cat.name}
+            <option key={cat.id} value={cat.id}
+            className="bg-black">
+              {cat.category || cat.name}
             </option>
           ))}
         </select>
+
 
         <input
           type="date"
