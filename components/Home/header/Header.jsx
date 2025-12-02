@@ -49,11 +49,11 @@ const { title, setTitle } = useAI()
          
 
           {/* Right Section */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 ">
             {loading ? (
               <span className="text-gray-300">Loading...</span>
             ) : user?.user ? (
-              <span className="text-yellow-400 font-medium">
+              <span className="text-yellow-400 font-medium hidden md:flex ">
                 Welcome, {user.user.fullName}
               </span>
             ) : (
@@ -86,7 +86,7 @@ const { title, setTitle } = useAI()
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-black shadow-md">
+        <div className="md:hidden bg-black shadow-md transform transition-transform duration-300 ease-in-out">
           <nav className="px-2 pt-2 pb-4 space-y-1">
             {navigation.map((item) => (
               <Link
