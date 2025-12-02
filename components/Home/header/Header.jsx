@@ -17,7 +17,7 @@ const { title, setTitle } = useAI()
   ];
 
   return (
-    <header className="sticky top-0 z-500 bg-black shadow-md">
+    <header className="sticky top-0 z-500 bg-slate-800 shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
 
@@ -57,7 +57,7 @@ const { title, setTitle } = useAI()
                 Welcome, {user.user.fullName}
               </span>
             ) : (
-              <>
+              <div className="hidden md:flex space-x-4">
                 <Link
                   href="/signin"
                   className="text-yellow-400 hover:text-yellow-200 transition-colors"
@@ -68,9 +68,9 @@ const { title, setTitle } = useAI()
                   href="/signup"
                   className="px-4 py-2 bg-yellow-600 text-black font-semibold rounded-md hover:bg-yellow-500 transition-colors"
                 >
-                  Sign Up
+                  Sign Up    
                 </Link>
-              </>
+              </div>
             )}
 
             {/* Mobile Menu Button */}
@@ -86,7 +86,7 @@ const { title, setTitle } = useAI()
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-black shadow-md transform transition-transform duration-300 ease-in-out">
+        <div className="md:hidden bg-slate-800 shadow-md transform transition-transform duration-300 ease-in-out">
           <nav className="px-2 pt-2 pb-4 space-y-1">
             {navigation.map((item) => (
               <Link
