@@ -11,7 +11,7 @@ export default function AddBook() {
     categoryId: "",
     publishedAt: "",
   });
-
+  
   const [file, setFile] = useState(null);
   const [cover, setCover] = useState(null);
   const [categories, setCategories] = useState([]);

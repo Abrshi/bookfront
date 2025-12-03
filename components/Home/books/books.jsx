@@ -5,19 +5,20 @@ import api from "@/axios/axios";
 import { redirect } from "next/navigation";
 import { useAI } from "@/context/AIContext";
 import BookReviews from "./ai/BookReview";
+import { ExternalLink } from "lucide-react";
 /* --------------------- BOOK CARD ----------------------- */
 function BookCard({ book }) {
   return (
-    <div className="border border-gray-500/50  p-4 shadow-md hover:shadow-xl transition-all duration-300 w-70 ">
+    <div className="glass rounded-2xl p-4 transition-all duration-300 hover:border-primary/30 glass-hover">
       
       {/* Image Section */}
       <div 
-          className=" relative rounded-xl overflow-hidden p-3 m-auto w-60"
+          className="relative aspect-[3/4] w-full overflow-hidden rounded-xl mb-4"
       >
         <img
           src={book.coverUrl}
           alt={book.title}
-          className="w-52 h-72 object-cover mx-auto  rounded-lg"
+          className="object-cover transition-transform duration-300 group-hover:scale-105 w-full"
           onError={(e) => (e.target.style.display = "none")}
         />
         {/* <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-transparent to-transparent rounded-2xl"></div> */}
@@ -27,40 +28,35 @@ function BookCard({ book }) {
         </span> */}
       </div>
 
-      {/* Title + Author */}
-      <div className="mt-4">
-        <h3 className="text-l font-semibold text-white h-10">
-          {book.title}
-        </h3>
+   
+  {/* Title + Author */}
+  <div className="mt-2">
+    <h3 className="text-lg font-bold text-white truncate">{book.title}</h3>
+    <p className="text-yellow-500 text-sm mt-1 truncate">{book.author}</p>
+  </div>
 
-        <p className="text-yellow-600 text-ss mt-0.5 h-5">
-          {book.author}
-        </p>
+  {/* Description (optional, uncomment if needed) */}
+  {/* {book.description && (
+    <p className="text-gray-300 text-sm mt-2 line-clamp-3">
+      {book.description}
+    </p>
+  )} */}
 
-      </div>
-
-      {/* Description */}
-      {/* {book.description && (
-        <p className="text-gray-100 text-s mt-2 line-clamp-3 h-20">
-          {book.description}
-        </p>
-      )} */}
-
-      {/* Button */}
-   <div className="flex gap-5 h-12">
-       {book.fileUrl && (
-        <a
-          href={book.fileUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-4 w-30 flex items-center justify-center gap-2 bg-yellow-600 text-white py-2 rounded-xl font-semibold hover:bg-gray-900 transition"
-        >
-          View Book
-        </a>
-        
-      )}
-      <BookReviews bookId={book} />
-   </div>
+  {/* Actions */}
+  <div className="flex gap-4 mt-4">
+    {book.fileUrl && (
+      <a
+        href={book.fileUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className=" px-4 mt-4 w-30 flex items-center justify-center gap-2 bg-yellow-600 text-white py-2 rounded-xl font-semibold hover:bg-gray-900 transition"
+      >
+        <ExternalLink size={16} />
+            <span className="">Read</span>
+      </a>
+    )}
+    <BookReviews bookId={book} />
+  </div>
     </div>
   );
 }
@@ -117,11 +113,11 @@ function Books() {
 
   return (
     <div className="p-6 min-h-screen bg-slate-600 max-w-[2048px] mx-auto">
-      {/* FILTER SLIDER */}
-      <div className="mt-6 mb-8">
+      {/* FILTER SLIDER */} 
+      <div className=" mb-4">
         <div className="relative">
           <div
-            className="flex gap-3 px-3 py-2 overflow-x-auto no-scrollbar snap-x snap-mandatory"
+            className="flex gap-3 px-2 py-2 overflow-x-auto no-scrollbar snap-x snap-mandatory"
             role="tablist"
             aria-orientation="horizontal"
           >
