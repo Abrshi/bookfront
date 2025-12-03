@@ -10,14 +10,16 @@ import { useAI } from "@/context/AIContext";
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { user, loading } = useAuth();
-const { title, setTitle } = useAI()
-  const navigation = [
-    { name: "Home", href: "/" },
-   
-  ];
+  const { setTitle } = useAI();
+ if(user){
+  console.log("User in Header:", user);
+ }else{
+  console.log("No user in Header");
+ }
+  const navigation = [{ name: "Home", href: "/" }];
 
   return (
-    <header className="sticky top-0 z-500 bg-slate-800 shadow-md">
+    <header className="sticky top-0 z-50 bg-slate-800 shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
 
@@ -27,7 +29,7 @@ const { title, setTitle } = useAI()
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-6 w-[60%] items-center">
+          <nav className="hidden md:flex items-center space-x-6 w-[60%]">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -37,23 +39,22 @@ const { title, setTitle } = useAI()
                 {item.name}
               </Link>
             ))}
-            <div className="w-full">
-           {user?.user?(<BookSuggestion
-              onSuggested={(bookTitle) => {
-                setTitle(bookTitle); // updates global state
-              }}
-            />):null}
-         </div>
+
+            {user?.user && (
+              <div className="flex-1">
+                <BookSuggestion
+                  onSuggested={(bookTitle) => setTitle(bookTitle)}
+                />
+              </div>
+            )}
           </nav>
 
-         
-
           {/* Right Section */}
-          <div className="flex items-center space-x-4 ">
+          <div className="flex items-center space-x-4">
             {loading ? (
               <span className="text-gray-300">Loading...</span>
             ) : user?.user ? (
-              <span className="text-yellow-400 font-medium hidden md:flex ">
+              <span className="text-yellow-400 font-medium hidden md:block">
                 Welcome, {user.user.fullName}
               </span>
             ) : (
@@ -68,12 +69,12 @@ const { title, setTitle } = useAI()
                   href="/signup"
                   className="px-4 py-2 bg-yellow-600 text-black font-semibold rounded-md hover:bg-yellow-500 transition-colors"
                 >
-                  Sign Up    
+                  Sign Up
                 </Link>
               </div>
             )}
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="md:hidden p-3 rounded-md text-yellow-400 hover:text-yellow-200 transition-colors"
@@ -86,28 +87,29 @@ const { title, setTitle } = useAI()
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-slate-800 shadow-md transform transition-transform duration-300 ease-in-out">
+        <div className="md:hidden bg-slate-800 shadow-md transition-all duration-300">
           <nav className="px-2 pt-2 pb-4 space-y-1">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="block px-3 py-2 rounded-md text-yellow-400 hover:bg-yellow-800 hover:text-yellow-200 transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
+                className="block px-3 py-2 rounded-md text-yellow-400 hover:bg-slate-700 transition-colors"
               >
                 {item.name}
               </Link>
-              
             ))}
-            <div className="w-full">
-              {user?.user?(<BookSuggestion
-                  onSuggested={(bookTitle) => {
-                    setTitle(bookTitle); // updates global state
-                  }}
-                />):null}
-            </div>
 
-            {/* Mobile Auth Section */}
+            {user?.user && (
+              <BookSuggestion
+                onSuggested={(bookTitle) => {
+                  setTitle(bookTitle);
+                  setMobileMenuOpen(false);
+                }}
+              />
+            )}
+
+            {/* Mobile Auth */}
             {loading ? (
               <span className="block px-3 py-2 text-gray-300">Loading...</span>
             ) : user?.user ? (
@@ -118,15 +120,15 @@ const { title, setTitle } = useAI()
               <>
                 <Link
                   href="/signin"
-                  className="block px-3 py-2 rounded-md text-yellow-400 hover:bg-yellow-800 hover:text-yellow-200 transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
+                  className="block px-3 py-2 rounded-md text-yellow-400 hover:bg-slate-700 transition-colors"
                 >
                   Sign In
                 </Link>
                 <Link
                   href="/signup"
-                  className="block px-3 py-2 rounded-md bg-yellow-600 text-black font-semibold hover:bg-yellow-500 transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
+                  className="block px-3 py-2 rounded-md bg-yellow-600 text-black font-semibold hover:bg-yellow-500 transition-colors"
                 >
                   Sign Up
                 </Link>
