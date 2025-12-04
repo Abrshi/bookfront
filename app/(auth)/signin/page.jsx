@@ -38,7 +38,7 @@ export default function Login() {
        
       // Redirect to dashboard after short delay
       setTimeout(() => {
-        router.push("/dashboard");
+        router.push("/");
       }, 2000);
     } catch (err) {
       console.error("Signin error:", err.response?.data || err.message);
