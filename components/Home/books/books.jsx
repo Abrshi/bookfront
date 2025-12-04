@@ -112,7 +112,7 @@ function Books() {
   const pillActive = "bg-yellow-600 text-white";
 
   return (
-    <div className="p-6 min-h-screen bg-slate-600 max-w-[2048px] mx-auto">
+    <div className="p-6 min-h-screen bg-[#030A17] max-w-[2048px] mx-auto">
       {/* FILTER SLIDER */} 
       <div className=" mb-4">
         <div className="relative">
