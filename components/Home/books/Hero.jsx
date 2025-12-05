@@ -38,7 +38,7 @@ export default function Hero() {
   };
 
   return (
-    <div className="w-full max-h-[520px] overflow-hidden relative">
+    <div className="w-full h-[90vh] overflow-hidden relative">
       {hero && hero.length > 0 ? (
         <Slider {...settings}>
           {hero.map((item) => {
@@ -48,38 +48,48 @@ export default function Hero() {
               : "https://via.placeholder.com/800x400?text=No+Cover";
 
             return (
-              <div key={book.id} className="relative">
-                {/* Background Image */}
+              <div key={book.id} className="relative w-full h-[90vh]">
+                {/* Blurred Background */}
                 <img
                   src={cover}
                   alt={book.title}
-                  className="w-full h-[520px] object-cover"
+                  className="md:absolute align-middle m-auto inset-0 w-80 h-8 object-cover blur-xl scale-110 opacity-60"
                 />
 
-                {/* Overlay Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent flex flex-col justify-center px-6 md:px-16">
-                  <h2 className="text-3xl md:text-5xl text-white font-extrabold drop-shadow-lg">
-                    {book.title}
-                  </h2>
+                {/* Foreground Content */}
+                <div className="block md:flex relative z-10 items-center h-full px-6 md:px-16">
+                  {/* Book Cover */}
+                  <img
+                    src={cover}
+                    alt={book.title}
+                    className="w-40 md:w-64 rounded-xl shadow-2xl object-cover"
+                  />
 
-                  <p className="text-lg md:text-xl text-gray-200 font-medium mt-3">
-                    {book.author}
-                  </p>
+                  {/* Text Section */}
+                  <div className="ml-8 max-w-xl">
+                    <h2 className="text-3xl md:text-5xl font-extrabold text-white drop-shadow-lg">
+                      {book.title}
+                    </h2>
 
-                  {book.description && (
-                    <p className="text-gray-300 mt-4 max-w-2xl text-sm md:text-base leading-relaxed">
-                      {book.description}
+                    <p className="text-lg md:text-xl text-gray-200 font-medium mt-3">
+                      {book.author}
                     </p>
-                  )}
 
-                  <a
-                    href={book.fileUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-6 inline-block px-8 py-3 bg-yellow-600 text-black font-semibold rounded-lg shadow-lg hover:bg-yellow-500 transition-all duration-300"
-                  >
-                    Read Book
-                  </a>
+                    {book.description && (
+                      <p className="text-gray-300 mt-4 leading-relaxed text-sm md:text-base">
+                        {book.description}
+                      </p>
+                    )}
+
+                    <a
+                      href={book.fileUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-6 inline-block px-8 py-3 bg-yellow-600 text-black font-semibold rounded-lg shadow-lg hover:bg-yellow-500 transition-all duration-300 w-40"
+                    >
+                      Read Book
+                    </a>
+                  </div>
                 </div>
               </div>
             );
