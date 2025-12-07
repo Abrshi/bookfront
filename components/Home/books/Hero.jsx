@@ -48,49 +48,64 @@ export default function Hero() {
               : "https://via.placeholder.com/800x400?text=No+Cover";
 
             return (
-              <div key={book.id} className="relative w-full h-[90vh]">
-                {/* Blurred Background */}
-                <img
-                  src={cover}
-                  alt={book.title}
-                  className="md:absolute align-middle m-auto inset-0 w-80 h-8 object-cover blur-xl scale-110 opacity-60"
-                />
+              <div
+                key={book.id}
+                className="relative w-full h-[90vh] m-auto"
+              >
+               <div className="w-screen h-screen relative overflow-hidden">
+                    {/* BLURRED BACKGROUND ONLY */}
+                    <div
+                      className="absolute inset-0 scale-110 blur-xl z-0"
+                      style={{
+                        backgroundImage: `url(${cover})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                      }}
+                    ></div>
 
-                {/* Foreground Content */}
-                <div className="block md:flex relative z-10 items-center h-full px-6 md:px-16">
-                  {/* Book Cover */}
-                  <img
-                    src={cover}
-                    alt={book.title}
-                    className="w-40 md:w-64 rounded-xl shadow-2xl object-cover"
-                  />
+                    {/* CONTENT (SHARP) */}
+                    <div className="relative z-10 w-screen h-screen flex mx-40 gap-5">
 
-                  {/* Text Section */}
-                  <div className="ml-8 max-w-xl">
-                    <h2 className="text-3xl md:text-5xl font-extrabold text-white drop-shadow-lg">
-                      {book.title}
-                    </h2>
+                      {/* Left Image Section */}
+                      <div className="w-1/3 flex items-center justify-center">
+                        <img
+                          src={cover}
+                          alt={book.title}
+                          className="bg-black w-72 md:h-[90vh] md:w-auto rounded-xl shadow-2xl object-cover"
+                        />
+                      </div>
 
-                    <p className="text-lg md:text-xl text-gray-200 font-medium mt-3">
-                      {book.author}
-                    </p>
+                      {/* Right Text Section */}
+                      <div className="w-1/2 h-full flex items-center">
+                        <div className="h-96">
+                          <h2 className="text-3xl md:text-5xl font-extrabold text-white drop-shadow-lg">
+                            {book.title}
+                          </h2>
 
-                    {book.description && (
-                      <p className="text-gray-300 mt-4 leading-relaxed text-sm md:text-base">
-                        {book.description}
-                      </p>
-                    )}
+                          <p className="text-lg md:text-xl text-gray-200 font-medium mt-3">
+                            {book.author}
+                          </p>
 
-                    <a
-                      href={book.fileUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-6 inline-block px-8 py-3 bg-yellow-600 text-black font-semibold rounded-lg shadow-lg hover:bg-yellow-500 transition-all duration-300 w-40"
-                    >
-                      Read Book
-                    </a>
+                          {book.description && (
+                            <p className="text-gray-300 mt-4 leading-relaxed text-sm md:text-base">
+                              {book.description}
+                            </p>
+                          )}
+
+                          <a
+                            href={book.fileUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mt-6 inline-block px-8 py-3 bg-yellow-600 text-black font-semibold rounded-lg shadow-lg hover:bg-yellow-500 transition-all duration-300 w-40"
+                          >
+                            Read Book
+                          </a>
+                        </div>
+                      </div>
+
+                    </div>
                   </div>
-                </div>
+
               </div>
             );
           })}
