@@ -50,7 +50,7 @@ export default function Hero() {
             return (
               <div
                 key={book.id}
-                className="relative w-full h-[90vh] m-auto"
+                className="relative w-full h-[90vh] m-auto overflow-hidden"
               >
                <div className="w-screen h-screen relative overflow-hidden">
                     {/* BLURRED BACKGROUND ONLY */}
@@ -64,28 +64,25 @@ export default function Hero() {
                     ></div>
 
                     {/* CONTENT (SHARP) */}
-                    <div className="relative z-10 w-screen h-screen flex mx-40 gap-5">
+                    <div className="relative z-10 w-screen h-screen m-0 lg:mx-40 gap-5 block md:block lg:flex">
 
                       {/* Left Image Section */}
-                      <div className="w-1/3 flex items-center justify-center">
+                      <div className="w-full sm:w-full md:w-full lg:w-1/3 flex items-center justify-center">
                         <img
                           src={cover}
                           alt={book.title}
-                          className="bg-black w-72 md:h-[90vh] md:w-auto rounded-xl shadow-2xl object-cover"
+                          className="bg-black w-72 sm:h-[90vh] md:w-auto rounded-xl shadow-2xl object-cover"
                         />
                       </div>
-
                       {/* Right Text Section */}
-                      <div className="w-1/2 h-full flex items-center">
-                        <div className="h-96">
-                          <h2 className="text-3xl md:text-5xl font-extrabold text-white drop-shadow-lg">
+                      <div className="h-full flex lg:items-center w-full sm:w-full md:w-full lg:w-1/2">
+                        <div className=" lg:h-96 md:mt-20 sm:mt-24">
+                          <h2 className="md:mt-20 sm:mt-20 text-3xl md:text-5xl font-extrabold text-white drop-shadow-lg">
                             {book.title}
                           </h2>
-
                           <p className="text-lg md:text-xl text-gray-200 font-medium mt-3">
                             {book.author}
                           </p>
-
                           {book.description && (
                             <p className="text-gray-300 mt-4 leading-relaxed text-sm md:text-base">
                               {book.description}
