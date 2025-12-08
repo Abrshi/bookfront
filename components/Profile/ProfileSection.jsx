@@ -8,7 +8,7 @@ export default function ProfileSection() {
   const router = useRouter();
 
   if (!user) return null;
-   console.log(user)
+  
   // Get first letter
   const firstLetter =
     user.user.fullName?.charAt(0).toUpperCase() ||

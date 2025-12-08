@@ -15,7 +15,7 @@ export default function Hero() {
       try {
         const res = await api.get("/user/getAllHeroes");
         setHero(res.data);
-        console.log("header hero", res.data);
+        
       } catch (err) {
         console.error("Error loading hero:", err);
       }

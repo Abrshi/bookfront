@@ -12,15 +12,15 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { user, loading } = useAuth();
   const { setTitle } = useAI();
- if(user){
-  console.log("User in Header:", user);
- }else{
-  console.log("No user in Header");
- }
-  const navigation = [{ name: "Home", href: "/" }];
+
+  const navigation = [
+    { name: "Home", href: "/" },
+    { name: "Comment", href: "/Comment" }
+  
+  ];
 
   return (
-    <header className="sticky top-0 z-50 bg-slate-800 shadow-md">
+    <header className="sticky top-0 z-50 bg-black shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
 
@@ -31,17 +31,17 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex justify-between items-center space-x-6 w-[60%] ">
-           <>
+           <div className="w-40 gap-4 ">
              {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-yellow-400 hover:text-yellow-200 transition-colors"
+                className="text-yellow-400 pl-5 hover:text-yellow-200 transition-colors"
               >
                 {item.name}
               </Link>
             ))}
-           </>
+           </div>
 
             {user?.user && (
               <div className="flex Justify-end">
