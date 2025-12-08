@@ -49,7 +49,7 @@ function BookSearch({ onSuggested }) {
   };
 
   return (
-    <div className="w-full relative">
+    <div className="w-72 relative">
       {/* Search input */}
       <form
         onSubmit={handleSubmit}

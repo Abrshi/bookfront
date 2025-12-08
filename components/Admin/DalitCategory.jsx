@@ -67,7 +67,7 @@ function DalitCategory() {
         {categories.map((cat) => (
           <li
             key={cat.id}
-            className="p-3 bg-gray-100 rounded-lg flex justify-between items-center"
+            className="p-3 bg-gray-700 rounded-lg flex justify-between items-center"
           >
             {editId === cat.id ? (
               <input

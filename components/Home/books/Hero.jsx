@@ -67,11 +67,11 @@ export default function Hero() {
                     <div className="relative z-10 w-screen h-screen m-0 lg:mx-40 gap-5 block md:block lg:flex">
 
                       {/* Left Image Section */}
-                      <div className="w-full sm:w-full md:w-full lg:w-1/3 flex items-center justify-center">
+                      <div className="w-full sm:w-full md:w-full lg:w-1/3 flex mt-10 justify-center">
                         <img
                           src={cover}
                           alt={book.title}
-                          className="bg-black w-72 sm:h-[90vh] md:w-auto rounded-xl shadow-2xl object-cover"
+                          className="bg-black w-72 sm:h-[81vh] md:w-auto rounded-xl shadow-2xl object-cover"
                         />
                       </div>
                       {/* Right Text Section */}

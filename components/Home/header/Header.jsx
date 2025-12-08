@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import BookSuggestion from "../books/ai/BookSearch";
 import { useAI } from "@/context/AIContext";
+import ProfileSection from "@/components/Profile/ProfileSection";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -29,8 +30,9 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6 w-[60%]">
-            {navigation.map((item) => (
+          <nav className="hidden md:flex justify-between items-center space-x-6 w-[60%] ">
+           <>
+             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
@@ -39,9 +41,10 @@ export default function Header() {
                 {item.name}
               </Link>
             ))}
+           </>
 
             {user?.user && (
-              <div className="flex-1">
+              <div className="flex Justify-end">
                 <BookSuggestion
                   onSuggested={(bookTitle) => setTitle(bookTitle)}
                 />
@@ -55,7 +58,7 @@ export default function Header() {
               <span className="text-gray-300">Loading...</span>
             ) : user?.user ? (
               <span className="text-yellow-400 font-medium hidden md:block">
-                Welcome, {user.user.fullName}
+                <ProfileSection />
               </span>
             ) : (
               <div className="hidden md:flex space-x-4">
