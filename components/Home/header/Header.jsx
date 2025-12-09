@@ -15,10 +15,10 @@ export default function Header() {
 
   const navigation = [
     { name: "Home", href: "/" },
-    { name: "Books", href: "/Books" },
+    { name: "Books", href: "/bookList" },
     { name: "Comments", href: "/Comment" },
-    { name: "About", href: "/About" },
-    { name: "Contact", href: "/Contact" },
+    { name: "About", href: "/#" },
+    { name: "Contact", href: "/#" },
   ];
 
   return (

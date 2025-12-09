@@ -110,11 +110,11 @@ function Books() {
   const pillActive = "bg-yellow-600 text-white";
 
   return (
-    <div className="p-6 min-h-screen bg-white max-w-[2048px] mx-auto">
+    <div className="p-6 min-h-screen bg-white max-w-[2048px] mx-auto align-middle">
       {/* FILTER SLIDER */} 
-  <div className="mb-6 text-center">
-  <h2 className="text-xl font-semibold text-black">Top Books</h2>
-  <p className="text-sm text-gray-500 mt-1">Say something here</p>
+<div className="mb-8 text-center">
+  <h2 className="text-3xl font-bold text-black">Top Books</h2>
+  <p className="text-base text-gray-600 mt-2">Say something here</p>
 </div>
 
 
@@ -135,6 +135,7 @@ function Books() {
           ))}
         </div>
       )}
+      <a className=" w-96 button1 m-auto" href="/bookList">Bet All Books--</a>
     </div>
   );
 }
