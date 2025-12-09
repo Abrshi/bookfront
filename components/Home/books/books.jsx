@@ -112,10 +112,10 @@ function Books() {
   return (
     <div className="p-6 min-h-screen bg-white max-w-[2048px] mx-auto align-middle">
       {/* FILTER SLIDER */} 
-<div className="mb-8 text-center">
-  <h2 className="text-3xl font-bold text-black">Top Books</h2>
-  <p className="text-base text-gray-600 mt-2">Say something here</p>
-</div>
+      <div className="mb-8 text-center">
+        <h2 className="text-3xl font-bold text-black">Top Books</h2>
+        <p className="text-base text-gray-600 mt-2">Say something here</p>
+      </div>
 
 
 
@@ -135,7 +135,7 @@ function Books() {
           ))}
         </div>
       )}
-      <a className=" w-96 button1 m-auto" href="/bookList">Bet All Books--</a>
+      <a className="px-4 mx-auto w-96 flex items-center justify-center gap-2 bg-black text-white py-2 rounded-xl font-semibold hover:bg-black/80 hover:scale-105 transition" href="/bookList">Bet All Books--</a>
     </div>
   );
 }

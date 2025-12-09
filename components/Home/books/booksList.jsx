@@ -115,7 +115,7 @@ function Books() {
       <div className=" mb-4">
         <div className="relative">
           <div
-            className="flex gap-3 px-2 py-2 overflow-x-auto no-scrollbar snap-x snap-mandatory bg-black/10 rounded-2xl"
+            className="flex gap-3 px-2 py-2 overflow-x-auto no-scrollbar snap-x snap-mandatory bg-black/5 rounded-2xl"
             role="tablist"
             aria-orientation="horizontal"
           >
