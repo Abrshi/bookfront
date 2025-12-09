@@ -31,7 +31,7 @@ function BookReview({ bookId }) {
     <div>
       <button
         onClick={handleViewReview}
-        className="mt-4 px-5 flex items-center justify-center gap-2 hover:bg-yellow-700 text-white py-2 rounded-xl font-semibold bg-gray-800 transition"
+        className="button2"
       >
         {!loading ? "Review" : "Loading..."}
     

@@ -15,7 +15,6 @@ export default function Hero() {
       try {
         const res = await api.get("/user/getAllHeroes");
         setHero(res.data);
-        
       } catch (err) {
         console.error("Error loading hero:", err);
       }
@@ -39,7 +38,7 @@ export default function Hero() {
 
   return (
     <div className="w-full h-[90vh] overflow-hidden relative">
-      {hero && hero.length > 0 ? (
+      {hero.length > 0 ? (
         <Slider {...settings}>
           {hero.map((item) => {
             const book = item.book;
@@ -50,59 +49,59 @@ export default function Hero() {
             return (
               <div
                 key={book.id}
-                className="relative w-full h-[90vh] m-auto overflow-hidden"
+                className="relative w-full h-[90vh] overflow-hidden"
               >
-               <div className="w-screen h-screen relative overflow-hidden">
-                    {/* BLURRED BACKGROUND ONLY */}
-                    <div
-                      className="absolute inset-0 scale-110 blur-xl z-0"
-                      style={{
-                        backgroundImage: `url(${cover})`,
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
-                      }}
-                    ></div>
+                {/* Background Blur */}
+                <div
+                  className="absolute inset-0 scale-110 blur-xl z-0"
+                  style={{
+                    backgroundImage: `url(${cover})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                ></div>
 
-                    {/* CONTENT (SHARP) */}
-                    <div className="relative z-10 w-screen h-screen m-0 lg:mx-40 gap-5 block md:block lg:flex">
+                {/* Content */}
+                <div className="relative z-10 h-full flex flex-col lg:flex-row items-center justify-center gap-10 px-6 lg:px-40">
 
-                      {/* Left Image Section */}
-                      <div className="w-full sm:w-full md:w-full lg:w-1/3 flex mt-10 justify-center">
-                        <img
-                          src={cover}
-                          alt={book.title}
-                          className="bg-black w-72 sm:h-[81vh] md:w-auto rounded-xl shadow-2xl object-cover"
-                        />
-                      </div>
-                      {/* Right Text Section */}
-                      <div className="h-full flex lg:items-center w-full sm:w-full md:w-full lg:w-1/2">
-                        <div className=" lg:h-96 md:mt-20 sm:mt-24">
-                          <h2 className="md:mt-20 sm:mt-20 text-3xl md:text-5xl font-extrabold text-white drop-shadow-lg">
-                            {book.title}
-                          </h2>
-                          <p className="text-lg md:text-xl text-gray-200 font-medium mt-3">
-                            {book.author}
-                          </p>
-                          {book.description && (
-                            <p className="text-gray-300 mt-4 leading-relaxed text-sm md:text-base">
-                              {book.description}
-                            </p>
-                          )}
+                  {/* Left Image */}
+                  <div className="w-full lg:w-1/3 flex justify-center mt-10 lg:mt-0">
+                    <img
+                      src={cover}
+                      alt={book.title}
+                      className="bg-black w-72 h-[50vh] sm:h-[70vh] rounded-xl shadow-2xl object-cover"
+                    />
+                  </div>
 
-                          <a
-                            href={book.fileUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="mt-6 inline-block px-8 py-3 bg-yellow-600 text-black font-semibold rounded-lg shadow-lg hover:bg-yellow-500 transition-all duration-300 w-40"
-                          >
-                            Read Book
-                          </a>
-                        </div>
-                      </div>
+                  {/* Right Text */}
+                  <div className="w-full lg:w-1/2 flex items-center">
+                    <div>
+                      <h2 className="text-3xl md:text-5xl font-extrabold text-white drop-shadow-lg">
+                        {book.title}
+                      </h2>
 
+                      <p className="text-lg md:text-xl text-gray-200 mt-3">
+                        {book.author}
+                      </p>
+
+                      {book.description && (
+                        <p className="text-gray-300 mt-4 leading-relaxed text-sm md:text-base">
+                          {book.description}
+                        </p>
+                      )}
+
+                      <a
+                        href={book.fileUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-6 inline-block px-8 py-3 bg-yellow-600 text-black font-semibold rounded-lg shadow-lg hover:bg-yellow-500 transition-all duration-300 w-40"
+                      >
+                        Read Book
+                      </a>
                     </div>
                   </div>
 
+                </div>
               </div>
             );
           })}
@@ -114,12 +113,12 @@ export default function Hero() {
   );
 }
 
-/* ----------------- Custom Arrow Buttons ------------------ */
+/* Arrow Buttons */
 
 function NextArrow({ onClick }) {
   return (
     <div
-      className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 cursor-pointer bg-white/20 hover:bg-white/40 p-3 rounded-full backdrop-blur-md transition"
+      className="absolute right-4 top-1/2 -translate-y-1/2 z-20 cursor-pointer bg-white/20 hover:bg-white/40 p-3 rounded-full backdrop-blur-md transition"
       onClick={onClick}
     >
       <ChevronRight className="text-white" size={26} />
@@ -130,7 +129,7 @@ function NextArrow({ onClick }) {
 function PrevArrow({ onClick }) {
   return (
     <div
-      className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 cursor-pointer bg-white/20 hover:bg-white/40 p-3 rounded-full backdrop-blur-md transition"
+      className="absolute left-4 top-1/2 -translate-y-1/2 z-20 cursor-pointer bg-white/20 hover:bg-white/40 p-3 rounded-full backdrop-blur-md transition"
       onClick={onClick}
     >
       <ChevronLeft className="text-white" size={26} />

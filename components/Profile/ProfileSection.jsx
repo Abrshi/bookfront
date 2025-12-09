@@ -20,9 +20,9 @@ export default function ProfileSection() {
       className="
         w-10 h-10 flex items-center justify-center 
         rounded-full 
-        border-2 border-yellow-500 
-        bg-black 
-        text-white 
+        border-2 border-black 
+        bg-white 
+        text-black 
         font-bold 
         hover:border-yellow-600 
         transition

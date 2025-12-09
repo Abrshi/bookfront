@@ -84,7 +84,7 @@ function Books() {
       try {
         const isEmpty = title.length === 0;
         const res = isEmpty
-          ? await api.get("/user/getTopBookList")
+          ? await api.get("/user/getBookList")
           : await api.get(
               `/user/getBookList/${title[0]}/${title[1]}/${title[2]}/${title[3]}`
             );
@@ -112,19 +112,50 @@ function Books() {
   return (
     <div className="p-6 min-h-screen bg-white max-w-[2048px] mx-auto">
       {/* FILTER SLIDER */} 
-  <div className="mb-6 text-center">
-  <h2 className="text-xl font-semibold text-black">Top Books</h2>
-  <p className="text-sm text-gray-500 mt-1">Say something here</p>
-</div>
-
-
-
+      <div className=" mb-4">
+        <div className="relative">
+          <div
+            className="flex gap-3 px-2 py-2 overflow-x-auto no-scrollbar snap-x snap-mandatory bg-black/10 rounded-2xl"
+            role="tablist"
+            aria-orientation="horizontal"
+          >
+            {/* All */}
+            <button
+            role="tab"
+            aria-pressed={activeCat === "all"}
+            onClick={() => {
+                setTitle([]);
+                setActiveCat("all");
+            }}
+            className={activeCat === "all" ? "activButton" : "unactivButton"}
+            style={{ minWidth: 72 }}
+            >
+            All
+            </button>
+            {/* Categories */}
+            {categories.map((cat) => (
+            <button
+                key={cat.id}
+                role="tab"
+                aria-pressed={activeCat === cat.id}
+                onClick={() => {
+                setTitle(["all", "all", cat.id, "all"]);
+                setActiveCat(cat.id);
+                }}
+                className={activeCat === cat.id ? "activButton" : "unactivButton"}
+                style={{ minWidth: 120 }}
+            >
+                {cat.category}
+            </button>
+            ))}
+          </div>
+        </div>
+      </div>
 
       {/* MESSAGE */}
       {message && (
         <p className="text-red-500 mb-4 font-medium text-center">{message}</p>
       )}
-
       {/* BOOK LIST */}
       {books.length === 0 ? (
         <p className="text-gray-400 text-center">No books available</p>

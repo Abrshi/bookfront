@@ -15,41 +15,35 @@ export default function Header() {
 
   const navigation = [
     { name: "Home", href: "/" },
-    { name: "Comment", href: "/Comment" }
-  
+    { name: "Books", href: "/Books" },
+    { name: "Comments", href: "/Comment" },
+    { name: "About", href: "/About" },
+    { name: "Contact", href: "/Contact" },
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-black shadow-md">
+    <header className="sticky top-0 z-50 bg-white shadow-md text-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
 
           {/* Logo */}
-          <Link href="/" className="text-2xl font-bold text-yellow-500">
+          <Link href="/" className="text-2xl font-bold">
             Book
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex justify-between items-center space-x-6 w-[60%] ">
-           <div className="w-40 gap-4 ">
-             {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-yellow-400 pl-5 hover:text-yellow-200 transition-colors"
-              >
-                {item.name}
-              </Link>
-            ))}
-           </div>
-
-            {user?.user && (
-              <div className="flex Justify-end">
-                <BookSuggestion
-                  onSuggested={(bookTitle) => setTitle(bookTitle)}
-                />
-              </div>
-            )}
+          <nav className="hidden md:flex justify-between items-center space-x-6 w-[60%]">
+            <div className="flex gap-4">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="pl-5 hover:underline transition"
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
           </nav>
 
           {/* Right Section */}
@@ -57,20 +51,20 @@ export default function Header() {
             {loading ? (
               <span className="text-gray-300">Loading...</span>
             ) : user?.user ? (
-              <span className="text-yellow-400 font-medium hidden md:block">
+              <div className="hidden md:flex items-center gap-4">
+                <BookSuggestion
+                  onSuggested={(bookTitle) => setTitle(bookTitle)}
+                />
                 <ProfileSection />
-              </span>
+              </div>
             ) : (
               <div className="hidden md:flex space-x-4">
-                <Link
-                  href="/signin"
-                  className="text-yellow-400 hover:text-yellow-200 transition-colors"
-                >
+                <Link href="/signin" className="hover:underline transition">
                   Sign In
                 </Link>
                 <Link
                   href="/signup"
-                  className="px-4 py-2 bg-yellow-600 text-black font-semibold rounded-md hover:bg-yellow-500 transition-colors"
+                  className="px-4 py-2 font-semibold rounded-md hover:underline transition"
                 >
                   Sign Up
                 </Link>
@@ -80,7 +74,7 @@ export default function Header() {
             {/* Mobile Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-3 rounded-md text-yellow-400 hover:text-yellow-200 transition-colors"
+              className="md:hidden p-3 rounded-md"
             >
               {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
@@ -90,48 +84,52 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-slate-800 shadow-md transition-all duration-300">
+        <div className="md:hidden bg-white shadow-md transition-all duration-300">
           <nav className="px-2 pt-2 pb-4 space-y-1">
+
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-3 py-2 rounded-md text-yellow-400 hover:bg-slate-700 transition-colors"
+                className="block px-3 py-2 rounded-md hover:bg-slate-200 transition"
               >
                 {item.name}
               </Link>
             ))}
 
+            {/* Mobile Logged-in View */}
             {user?.user && (
-              <BookSuggestion
-                onSuggested={(bookTitle) => {
-                  setTitle(bookTitle);
-                  setMobileMenuOpen(false);
-                }}
-              />
+              <>
+                <div className="px-3 py-2">
+                  <BookSuggestion
+                    onSuggested={(bookTitle) => {
+                      setTitle(bookTitle);
+                      setMobileMenuOpen(false);
+                    }}
+                  />
+                </div>
+
+                <div className="px-3 py-2 text-yellow-500">
+                  <ProfileSection />
+                </div>
+              </>
             )}
 
             {/* Mobile Auth */}
-            {loading ? (
-              <span className="block px-3 py-2 text-gray-300">Loading...</span>
-            ) : user?.user ? (
-              <span className="block px-3 py-2 text-yellow-400">
-                Welcome, {user.user.fullName}
-              </span>
-            ) : (
+            {!user?.user && !loading && (
               <>
                 <Link
                   href="/signin"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block px-3 py-2 rounded-md text-yellow-400 hover:bg-slate-700 transition-colors"
+                  className="block px-3 py-2 rounded-md text-yellow-500 hover:bg-slate-200 transition"
                 >
                   Sign In
                 </Link>
                 <Link
                   href="/signup"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block px-3 py-2 rounded-md bg-yellow-600 text-black font-semibold hover:bg-yellow-500 transition-colors"
+                  className="block px-3 py-2 rounded-md bg-yellow-600 text-black font-semibold hover:bg-yellow-500 transition"
                 >
                   Sign Up
                 </Link>
