@@ -19,6 +19,12 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     console.error("API Error:", error.response?.data || error.message);
+    if (error.response?.status === 401) {
+      // Handle unauthorized errors globally
+      // Example: redirect to login page
+      // window.location.href = "/signup";
+
+    }
     return Promise.reject(error);
   }
 );

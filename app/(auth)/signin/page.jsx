@@ -5,10 +5,12 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import api from "@/axios/axios"; // ✅ Import your axios instance
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useAuth } from "@/context/AuthContext";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
+  const { setUser } = useAuth();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -18,7 +20,6 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const [user, setUser] = useState(null);   
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -33,10 +34,13 @@ export default function Login() {
     try {
       const res = await api.post("/auth/signin", formData);
       console.log("Signin success:", res.data);
-       setUser(res.data);
+      
+      // ✅ Update global auth context so Header re-renders immediately
+      setUser(res.data);
+
       setSuccess(res.data.message || "Signin successful!");
-       
-      // Redirect to dashboard after short delay
+
+      // Redirect to home after short delay
       setTimeout(() => {
         router.push("/");
       }, 2000);
